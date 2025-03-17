@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color:  #9cb6f0;
+        }
+        #taskList {
+            list-style-type: none;
+            padding: 0;
+        }
+        .task {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px auto;
+            padding: 10px;
+            width: 300px;
+            background-color: #f4f4f4;
+            border-radius: 5px;
+        }
+        .remove-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h2>To-Do List</h2>
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        function addTask() {
+            let taskInput = document.getElementById("taskInput");
+            let taskText = taskInput.value.trim();
+            
+            if (taskText === "") {
+                alert("Please enter a task.");
+                return;
+            }
+            let li = document.createElement("li");
+            li.className = "task";
+            li.innerHTML = `<span>${taskText}</span> <button class="remove-btn" onclick="removeTask(this)">Remove</button>`;
+            
+            document.getElementById("taskList").appendChild(li);
+            taskInput.value = "";
+        }
+        function removeTask(button) {
+            let li = button.parentElement;
+            li.remove();
+        }
+    </script>
+</body>
+</html>
